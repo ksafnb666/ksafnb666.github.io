@@ -265,6 +265,13 @@
             overflow-y: auto;
             white-space: pre-line;
         }
+        .modal-body img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0.6rem 0;
+            border-radius: 8px;
+        }
         
         .modal-footer {
             padding: 0 1.5rem 1.5rem;
@@ -282,6 +289,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 14px rgba(67, 97, 238, 0.35);
+        }
+        .modal-btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
         }
         
         .modal-btn:hover {
@@ -335,13 +348,9 @@
                 <i class="fas fa-credit-card"></i>
                <span>免手续费卡网</span>
             </a>
-            <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=ngld4n6zvnelv%2FIJDKKglk128yLCzhTcbFkAcRvF6nIMWn5FOJFRnSQDG6Zp2ilX&busi_data=eyJncm91cENvZGUiOiIxMDQ5Njg1MDc1IiwidG9rZW4iOiJSVUFBQWF0WHg5VTNmbmgyeFp6UysvYjFodER3RjFsQ2JXOHdGaUthRHNNY0N1Ti9lSFBFNklodThsY2lzM3M3IiwidWluIjoiMzQ1NDYyNjAwMSJ9&data=8FXE8J7o6xBMRfIcTfYuHP4P1471wa0uW24opDcICaPWxRt56VZZqH3i3W1lZmfEm7eLKTKkVLXu6HBOxhl7nQ&svctype=4&tempid=h5_group_info" class="btn btn-3" target="_blank">
+            <a href="https://qm.qq.com/q/284J3wspbe" class="btn btn-3" target="_blank">
                 <i class="fab fa-qq"></i>
                 <span>加入QQ①群</span>
-            </a>
-                        <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=uOsXBKVsfGS9ObnGRI6CBkdL59jv7pDvgACzp1PdgmtlcEmdL%2BgyAnM0SPprMJtu&busi_data=eyJncm91cENvZGUiOiI3Njk0MDM0NTUiLCJ0b2tlbiI6IlIwUi9obGI3N3Z2ckU2eGNoak1ka3Q1bWhGcmFYQ1ZnMkhQRzRrTTRMS3FFRWhCRFVNMGEybWZYQTFBSDlacDEiLCJ1aW4iOiIzNDU0NjI2MDAxIn0%3D&data=_d5xVU52bR80GFC9OO8XoC3PCAwGMAH9_fdyx54A477lmlqJyUFSC1VnsNt_JPIwkeRWvn5hGXWZxGqwdzbS9w&svctype=4&tempid=h5_group_info" class="btn btn-3" target="_blank">
-                <i class="fab fa-qq"></i>
-                <span>加入QQ②群</span>
             </a>
             <a href="https://t.me/AFNB7891" class="btn btn-4" target="_blank">
                 <i class="fab fa-telegram"></i>
@@ -355,16 +364,16 @@
         <div class="modal-box">
             <div class="modal-header">
                 <i class="fas fa-bullhorn"></i>
-                <span>重要公告</span>
+                <span>重要公告[请仔细阅读]</span>
             </div>
             <div class="modal-body" id="noticeContent">
-咱们有电报的加一下电报
-没电报的加Q群
-否则下单没售后
+优先加电报没电报的可以加微信或者QQ
+有时候QQ掉了直接回复电报和微信
+<img src="https://pan.29o.cn/view.php/94169800142561df76d48f434933bc58.png" />
             </div>
             <div class="modal-footer">
-                <button class="modal-btn" id="noticeBtn">
-                    <i class="fas fa-check-circle"></i> 知道了
+                <button class="modal-btn" id="noticeBtn" disabled>
+                    <i class="fas fa-check-circle"></i> <span>知道了(5s)</span>
                 </button>
             </div>
         </div>
@@ -374,7 +383,24 @@
         // 页面加载完成自动弹出公告
         window.addEventListener('DOMContentLoaded', function () {
             setTimeout(function () {
-                document.getElementById('noticeModal').classList.add('show');
+                const modal = document.getElementById('noticeModal');
+                const btn = document.getElementById('noticeBtn');
+                const btnText = btn.querySelector('span');
+                modal.classList.add('show');
+
+                // 5秒倒计时
+                let count = 5;
+                const timer = setInterval(()=>{
+                    count --;
+                    if(count > 0){
+                        btnText.innerText = `知道了(${count}s)`;
+                    }else{
+                        clearInterval(timer);
+                        btn.disabled = false;
+                        btnText.innerText = "知道了";
+                    }
+                },1000);
+
             }, 300);
         });
         
@@ -383,9 +409,10 @@
             document.getElementById('noticeModal').classList.remove('show');
         });
         
-        // 点击遮罩空白处也可关闭（可选）
+        // 点击遮罩空白处也可关闭（倒计时没结束禁止关闭）
         document.getElementById('noticeModal').addEventListener('click', function (e) {
-            if (e.target === this) {
+            const btn = document.getElementById('noticeBtn');
+            if (e.target === this && !btn.disabled) {
                 this.classList.remove('show');
             }
         });
