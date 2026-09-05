@@ -172,6 +172,10 @@
             background: linear-gradient(135deg, #0088cc 0%, #005580 100%);
             grid-column: span 2;
         }
+        .btn-5 {
+            background: linear-gradient(135deg,#e67e22 0%,#d35400 100%);
+            grid-column: span 2;
+        }
         
         .footer {
             margin-top: 2rem;
@@ -306,7 +310,7 @@
                 gap: 1.25rem;
             }
             
-            .btn-3, .btn-4 {
+            .btn-3, .btn-4,.btn-5 {
                 grid-column: span 1;
             }
             
@@ -340,7 +344,11 @@
         <div class="button-grid">
             <a href="https://shop.bromk.cn/shop/AFF" class="btn btn-2" target="_blank">
                 <i class="fas fa-credit-card"></i>
-               <span>免手续费卡网</span>
+               <span>24小时发卡网①</span>
+            </a>
+            <a href="https://shop.bromk.cn/shop/AFF" class="btn btn-2" target="_blank">
+                <i class="fas fa-credit-card"></i>
+               <span>24小时发卡网②</span>
             </a>
             <a href="https://qm.qq.com/q/284J3wspbe" class="btn btn-3" target="_blank">
                 <i class="fab fa-qq"></i>
@@ -350,20 +358,23 @@
                 <i class="fab fa-telegram"></i>
                 <span>加入TG群@AFNB7891</span>
             </a>
+            <!-- 新增按钮：点击打开弹窗，默认页面加载不再弹出弹窗 -->
+            <button class="btn btn-5" id="openNoticeBtn">
+                <i class="fas fa-bullhorn"></i>
+                <span>商务合作</span>
+            </button>
         </div>
     </div>
     
-    <!-- ===== 公告弹窗 ===== -->
+    <!-- ===== 公告弹窗 ===== 默认关闭，不再页面自动弹出 -->
     <div class="modal-overlay" id="noticeModal">
         <div class="modal-box">
             <div class="modal-header">
                 <i class="fas fa-bullhorn"></i>
-                <span>重要公告[请仔细阅读]</span>
+                <span>商务合作微信</span>
             </div>
             <div class="modal-body" id="noticeContent">
-优先加电报没电报的可以加微信或者QQ
-有时候QQ掉了直接回复电报和微信
-<img src="https://pan.29o.cn/view.php/94169800142561df76d48f434933bc58.png" />
+<img src="https://pan.29o.cn/view.php/82d380debe97c373f90b26da6239ee86.png"/>
             </div>
             <div class="modal-footer">
                 <button class="modal-btn" id="noticeBtn">
@@ -374,14 +385,13 @@
     </div>
     
     <script>
-        // 页面加载完成自动弹出公告
-        window.addEventListener('DOMContentLoaded', function () {
-            setTimeout(function () {
-                const modal = document.getElementById('noticeModal');
-                modal.classList.add('show');
-            }, 300);
-        });
+        // 移除页面加载自动弹出弹窗逻辑
         
+        // 点击【查看重要公告】按钮打开弹窗
+        document.getElementById('openNoticeBtn').addEventListener('click',function(){
+            document.getElementById('noticeModal').classList.add('show');
+        });
+
         // 点击"知道了"关闭弹窗
         document.getElementById('noticeBtn').addEventListener('click', function () {
             document.getElementById('noticeModal').classList.remove('show');
