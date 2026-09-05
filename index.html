@@ -290,12 +290,6 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 14px rgba(67, 97, 238, 0.35);
         }
-        .modal-btn:disabled {
-            opacity: 0.55;
-            cursor: not-allowed;
-            transform: none !important;
-            box-shadow: none !important;
-        }
         
         .modal-btn:hover {
             transform: translateY(-2px);
@@ -372,8 +366,8 @@
 <img src="https://pan.29o.cn/view.php/94169800142561df76d48f434933bc58.png" />
             </div>
             <div class="modal-footer">
-                <button class="modal-btn" id="noticeBtn" disabled>
-                    <i class="fas fa-check-circle"></i> <span>知道了(5s)</span>
+                <button class="modal-btn" id="noticeBtn">
+                    <i class="fas fa-check-circle"></i> <span>知道了</span>
                 </button>
             </div>
         </div>
@@ -384,23 +378,7 @@
         window.addEventListener('DOMContentLoaded', function () {
             setTimeout(function () {
                 const modal = document.getElementById('noticeModal');
-                const btn = document.getElementById('noticeBtn');
-                const btnText = btn.querySelector('span');
                 modal.classList.add('show');
-
-                // 5秒倒计时
-                let count = 5;
-                const timer = setInterval(()=>{
-                    count --;
-                    if(count > 0){
-                        btnText.innerText = `知道了(${count}s)`;
-                    }else{
-                        clearInterval(timer);
-                        btn.disabled = false;
-                        btnText.innerText = "知道了";
-                    }
-                },1000);
-
             }, 300);
         });
         
@@ -409,10 +387,9 @@
             document.getElementById('noticeModal').classList.remove('show');
         });
         
-        // 点击遮罩空白处也可关闭（倒计时没结束禁止关闭）
+        // 点击遮罩空白处也可关闭
         document.getElementById('noticeModal').addEventListener('click', function (e) {
-            const btn = document.getElementById('noticeBtn');
-            if (e.target === this && !btn.disabled) {
+            if (e.target === this) {
                 this.classList.remove('show');
             }
         });
