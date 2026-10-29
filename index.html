@@ -367,7 +367,7 @@
     }
     .btn:hover .arrow{transform:translateX(4px);opacity:1}
 
-    /* 横跨两列：主入口与客服入口 */
+    /* 横跨两列：主入口 */
     .btn.span-2{grid-column:1 / -1}
 
     /* 主入口：加高、放大，确立视觉第一层级 */
@@ -382,7 +382,6 @@
     .btn-2{--c1:#4361ee;--c2:#3a0ca3;--glow:rgba(67,97,238,.55)}
     .btn-4{--c1:#2aabee;--c2:#00547f;--glow:rgba(42,171,238,.5)}
     .btn-6{--c1:#12b7f5;--c2:#0a6ea8;--glow:rgba(18,183,245,.5)}
-    .btn-5{--c1:#2ec06b;--c2:#0f7a3d;--glow:rgba(46,192,107,.5)}
 
     /* ===== 页脚 ===== */
     .footer{
@@ -396,128 +395,6 @@
         letter-spacing:.04em;
     }
     .footer .sep{margin:0 8px;opacity:.55}
-
-    /* ===== 弹窗 ===== */
-    .modal-overlay{
-        position:fixed;
-        inset:0;
-        z-index:9999;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        padding:clamp(16px,4vw,24px);
-        background:rgba(4,7,16,.66);
-        backdrop-filter:blur(10px);
-        opacity:0;
-        visibility:hidden;
-        transition:opacity .32s var(--ease),visibility .32s var(--ease);
-    }
-    .modal-overlay.show{opacity:1;visibility:visible}
-
-    .modal-box{
-        width:100%;
-        max-width:400px;
-        background:linear-gradient(180deg,#141c31,#0d1424);
-        border:1px solid var(--stroke-2);
-        border-radius:22px;
-        box-shadow:0 40px 90px -30px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.07);
-        overflow:hidden;
-        transform:translateY(24px) scale(.96);
-        transition:transform .42s var(--ease);
-    }
-    .modal-overlay.show .modal-box{transform:translateY(0) scale(1)}
-
-    .modal-header{
-        position:relative;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        gap:10px;
-        padding:17px 22px;
-        font-size:1rem;
-        font-weight:700;
-        letter-spacing:.04em;
-        color:#fff;
-        background:linear-gradient(135deg,rgba(67,97,238,.95),rgba(58,12,163,.95));
-        border-bottom:1px solid rgba(255,255,255,.12);
-    }
-    .modal-header::after{
-        content:"";
-        position:absolute;
-        inset:auto 0 0 0;
-        height:1px;
-        background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);
-    }
-    .modal-header .ico{
-        display:grid;place-items:center;
-        width:30px;height:30px;
-        flex:0 0 auto;
-        border-radius:9px;
-        font-size:.85rem;
-        background:rgba(255,255,255,.2);
-    }
-
-    .modal-body{
-        padding:22px 22px 6px;
-        font-size:.92rem;
-        line-height:1.8;
-        color:#cdd7f0;
-        max-height:58vh;
-        max-height:58dvh;
-        overflow-y:auto;
-        overscroll-behavior:contain;
-    }
-    .modal-body::-webkit-scrollbar{width:6px}
-    .modal-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.16);border-radius:99px}
-
-    /* 二维码：固定 232px 视觉宽度并居中，避免大屏时被拉满 */
-    .qr{
-        width:min(232px,72%);
-        margin-inline:auto;
-        background:#fff;
-        border-radius:14px;
-        padding:10px;
-        line-height:0;
-        box-shadow:0 14px 34px -18px rgba(0,0,0,.9);
-    }
-    .qr img{display:block;width:100%;height:auto;border-radius:8px}
-
-    .qr-tip{
-        margin-top:14px;
-        margin-bottom:14px;
-        text-align:center;
-        font-size:.78rem;
-        color:#8d9ab9;
-        letter-spacing:.08em;
-    }
-
-    .modal-footer{padding:8px 22px 22px}
-
-    .modal-btn{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        gap:9px;
-        width:100%;
-        padding:13px;
-        border:none;
-        border-radius:var(--radius-sm);
-        font:inherit;
-        font-size:.98rem;
-        font-weight:600;
-        letter-spacing:.04em;
-        color:#fff;
-        cursor:pointer;
-        background:linear-gradient(135deg,var(--accent),var(--brand));
-        box-shadow:0 14px 30px -14px rgba(67,97,238,.95),inset 0 1px 0 rgba(255,255,255,.22);
-        transition:transform .3s var(--ease),box-shadow .3s var(--ease),filter .3s var(--ease);
-    }
-    .modal-btn:hover{transform:translateY(-2px);filter:brightness(1.07);box-shadow:0 20px 38px -16px rgba(67,97,238,1),inset 0 1px 0 rgba(255,255,255,.28)}
-    .modal-btn:active{transform:translateY(0) scale(.995)}
-    .modal-btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
-
-    /* 弹窗打开时锁滚动 */
-    html.is-locked,html.is-locked body{overflow:hidden}
 
     /* ===== 响应式 ===== */
     /* 中屏：按钮仍是双列，但收紧内距，保证标签不挤 */
@@ -557,7 +434,7 @@
         <header class="hero">
             <div class="chip"><span class="dot"></span>官方入口 · 实时更新</div>
             <h1>阿飞官网</h1>
-            <p class="subtitle">发卡 · 提卡 · 社群 · 客服，一站直达</p>
+            <p class="subtitle">发卡 · 提卡 · 社群，一站直达</p>
         </header>
 
         <section class="announcement" aria-labelledby="noticeTitle">
@@ -595,13 +472,6 @@
                 <span class="label">QQ 群</span>
                 <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
             </a>
-
-            <!-- 点击打开微信客服弹窗，页面加载不自动弹出 -->
-            <button class="btn btn-5 span-2" id="openNoticeBtn" type="button">
-                <span class="ico"><i class="fab fa-weixin"></i></span>
-                <span class="label">微信客服</span>
-                <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
-            </button>
         </nav>
 
         <footer class="footer">
@@ -609,59 +479,9 @@
         </footer>
     </div>
 
-    <!-- ===== 微信客服弹窗（默认关闭） ===== -->
-    <div class="modal-overlay" id="noticeModal" role="dialog" aria-modal="true" aria-label="内部购买（微信）">
-        <div class="modal-box">
-            <div class="modal-header">
-                <span class="ico"><i class="fab fa-weixin"></i></span>
-                <span>内部购买（微信）</span>
-            </div>
-            <div class="modal-body" id="noticeContent">
-                <div class="qr">
-                    <img src="https://pan.29o.cn/view.php/82d380debe97c373f90b26da6239ee86.png" alt="微信客服二维码" loading="lazy">
-                </div>
-                <p class="qr-tip">微信扫一扫 · 添加客服</p>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-btn" id="noticeBtn" type="button">
-                    <i class="fas fa-check-circle" aria-hidden="true"></i><span>知道了</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <script>
         (function () {
-            var modal = document.getElementById('noticeModal');
-            var openBtn = document.getElementById('openNoticeBtn');
-            var closeBtn = document.getElementById('noticeBtn');
-            var lastFocus = null;
             var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            function openModal() {
-                lastFocus = document.activeElement;
-                modal.classList.add('show');
-                document.documentElement.classList.add('is-locked');
-                closeBtn.focus();
-            }
-            function closeModal() {
-                modal.classList.remove('show');
-                document.documentElement.classList.remove('is-locked');
-                if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
-            }
-
-            openBtn.addEventListener('click', openModal);
-            closeBtn.addEventListener('click', closeModal);
-
-            // 点击遮罩空白处关闭
-            modal.addEventListener('click', function (e) {
-                if (e.target === modal) closeModal();
-            });
-
-            // Esc 关闭
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
-            });
 
             // 按钮点击涟漪
             Array.prototype.forEach.call(document.querySelectorAll('.btn'), function (btn) {
